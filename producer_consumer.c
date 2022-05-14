@@ -60,7 +60,7 @@ void producer_thread_entry(void *parameter)
         cnt++;
 
         /* 暂停一段时间 */
-        rt_thread_mdelay(20);
+        rt_thread_mdelay(10);
     }
 
     rt_kprintf("the producer exit!\n");
@@ -90,7 +90,7 @@ void consumer_thread_entry(void *parameter)
         if (get == 10) break;
 
         /* 暂停一小会时间 */
-        rt_thread_mdelay(50);
+        rt_thread_mdelay(20);
     }
 
     rt_kprintf("the consumer sum is: %d\n", sum);
