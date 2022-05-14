@@ -31,13 +31,15 @@ static void thread_entry(void* parameter)
     while (1)
     {
         if(0 == (count % 5))
-        {           
-            rt_kprintf("thread %d is running ,thread %d count = %d\n", value , value , count);      
-
-            if(count > 200)
-                return;            
-        }
-         count++;
+        {       
+						if(count > 200)
+                return;
+            rt_kprintf("thread %d is running ,thread %d count = %d\n", value , value , count);         
+				}
+       if (value == 1) 
+				count++;
+			else 
+				count+=2;
      }  
 }
 
