@@ -79,6 +79,13 @@ static void thread2_entry(void *parameter)
         /* 释放互斥锁 */
         rt_mutex_release(mutex);
     }
+		else
+    {
+        rt_kprintf("thread2 take a mutex, failed.\n");
+    }
+		rt_kprintf("mutex's owner is: ");
+		rt_kprintf((const char*)mutex->owner);
+		rt_kprintf("\n");
 }
 
 /* 线程 3 入口 */
@@ -94,11 +101,13 @@ static void thread3_entry(void *parameter)
     {
         rt_kprintf("thread3 take a mutex, failed.\n");
     }
-
+		rt_kprintf("mutex's owner is: ");
+		rt_kprintf((const char*)mutex->owner);
+		rt_kprintf("\n");
     /* 做一个长时间的循环，500ms */
     tick = rt_tick_get();
     while (rt_tick_get() - tick < (RT_TICK_PER_SECOND / 2)) ;
-
+		
     rt_mutex_release(mutex);
 }
 
@@ -135,7 +144,7 @@ int pri_inversion(void)
                             thread3_entry, 
                             RT_NULL, 
                             THREAD_STACK_SIZE, 
-                            THREAD_PRIORITY + 1, THREAD_TIMESLICE);
+                            THREAD_PRIORITY, THREAD_TIMESLICE);
     if (tid3 != RT_NULL)
         rt_thread_startup(tid3);
 
