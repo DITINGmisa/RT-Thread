@@ -45,7 +45,7 @@ int timer_sample(void)
 {
     /* 创建定时器1  周期定时器 */
     timer1 = rt_timer_create("timer1", timeout1,
-                             RT_NULL, 20,
+                             RT_NULL, 2,
                              RT_TIMER_FLAG_PERIODIC);
 
     /* 启动定时器1 */
@@ -53,7 +53,7 @@ int timer_sample(void)
 
     /* 创建定时器2 单次定时器 */
     timer2 = rt_timer_create("timer2", timeout2,
-                             RT_NULL,  20,
+                             RT_NULL,  24,
                              RT_TIMER_FLAG_ONE_SHOT);
 
     /* 启动定时器2 */
